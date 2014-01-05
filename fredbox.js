@@ -14,7 +14,8 @@ if (Meteor.isClient) {
     return Track.queued();
   };
   Template.tracks.events({
-    "click .upvote" : function () {
+    "click .upvote" : function (event) {
+      event.preventDefault();
       if (typeof Session.get( this._id ) === "undefined") {
         Track.upvote(this);
         Session.set( this._id, true );
@@ -22,10 +23,12 @@ if (Meteor.isClient) {
         alert( "Please don't upvote a track more than once." );
       }
     },
-    "click .remove" : function () {
+    "click .remove" : function (event) {
+      event.preventDefault();
       Track.destroy( this );
     },
-    "click .play" : function () {
+    "click .play" : function (event) {
+      event.preventDefault();
       Session.set( "currentUri", this.href );
 
       Track.stopAll();
@@ -37,16 +40,19 @@ if (Meteor.isClient) {
     return isAdmin ? "inline-block" : "none";
   };
   Template.oldtracks.events({
-    "click .remove" : function () {
+    "click .remove" : function (event) {
+      event.preventDefault();
       Track.destroy( this );
     },
-    "click .play" : function () {
+    "click .play" : function (event) {
+      event.preventDefault();
       Session.set( "currentUri", this.href );
 
       Track.stopAll();
       Track.play( this );
     },
-    "click .revive" : function () {
+    "click .revive" : function (event) {
+      event.preventDefault();
       Track.revive( this );
       Session.set( this._id, undefined );
     }
