@@ -1,0 +1,89 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fredbox</title>
+  <script src="tracks.js"></script>
+  <script src="spotify.js"></script>
+  <script src="konami.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>Frerthday <small>jukebox</small></h1>
+    </div>
+    <div class="row">
+      <input id="search" class="form-control" type="text" placeholder="Start typing the track name..."></input>
+    </div>
+    <div class="row">
+      {{> tracks}}
+    </div>
+    <div class="row">
+      {{> oldtracks}}
+    </div>
+  </div>
+
+  <div id="player">
+    {{> player}}
+  </div>
+
+  {{> nowplaying}}
+</body>
+
+<template name="tracks">
+  <ul class="tracks list-group">
+    {{#each tracks}}
+      <li class="list-group-item">
+        <a href="#" class="btn btn-default btn-xs upvote"><i class="fa fa-arrow-circle-up"></i></a>
+        <a href="#" class="btn btn-default btn-xs play" style="display: {{show}}"><i class="fa fa-play"></i></a>
+        <a href="#" class="btn btn-default btn-xs remove" style="display: {{show}}"><i class="fa fa-trash-o"></i></a>
+        <span class="track">
+          {{name}}
+          <small>{{artist}}</small>
+        </span>
+        <span class="badge">{{currentScore}}</span>
+        <span class="pull-right">{{length}}</span>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+
+
+<template name="oldtracks">
+  {{#if anytracks}}
+    <h4>Old tracks</h4>
+  {{/if}}
+  <ul id="oldtracks" class="tracks list-group">
+    {{#each tracks}}
+      <li class="list-group-item">
+        <a href="#" class="btn btn-default btn-xs revive"><i class="fa fa-repeat"></i></a>
+        <a href="#" class="btn btn-default btn-xs play" style="display: {{show}}"><i class="fa fa-play"></i></a>
+        <a href="#" class="btn btn-default btn-xs remove" style="display: {{show}}"><i class="fa fa-trash-o"></i></a>
+        <span class="track">
+          {{name}}
+          <small>{{artist}}</small>
+        </span>
+        <span class="badge">{{score}}</span>
+        <span class="pull-right">{{length}}</span>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="nowplaying">
+  <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="col-md-1 col-xs-2">
+      <p class="navbar-text">
+        <i class="fa fa-volume-up"></i>
+      </p>
+    </div>
+    <div class="col-md-11 col-xs-10">
+      <marquee class="navbar-text">
+        <span>{{trackname}} <small>{{artist}}</small></span>
+      </marquee>
+    </div>
+  </nav>
+</template>
+
+<template name="player">
+  <iframe src="https://embed.spotify.com/?uri={{uri}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+</template>

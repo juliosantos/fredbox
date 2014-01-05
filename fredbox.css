@@ -1,0 +1,41 @@
+body {
+  padding: 0 5px 200px 5px;
+}
+input {
+  margin-bottom: 10px;
+}
+
+.tracks .btn {
+  margin-right: 10px;
+  float: left;
+}
+.tracks small {
+  color: #666;
+}
+.tracks span.track {
+  display: inline-block;
+  max-width: 65%;
+}
+.tracks span.badge {
+  margin-left: 10px;
+}
+
+#oldtracks li {
+  background-color: transparent;
+}
+#oldtracks span.badge {
+  background-color: #222222;
+}
+
+#player {
+  display: none;
+  z-index: 1031;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 0 15px black;
+}
+
+.navbar-text {
+  float: none;
+}
