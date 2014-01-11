@@ -65,3 +65,4 @@ Track.old = function () {
 Track.playing = function () {
   return Tracks.findOne( {playing : true} );
 }
+

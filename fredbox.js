@@ -110,9 +110,54 @@ if (Meteor.isClient) {
   });
 }
 
+Router.map(function () {
+  this.route( "tracks", {
+    where : "server",
+    path : "/api/popTopTrack",
+    action : function () {
+      var statusCode = 200;
+      var headers = {
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Methods" : "GET",
+        "Access-Control-Allow-Headers" : "*",
+      };
+      var track = Tracks.findOne( {old : false, playing : false}, {sort : {currentScore : -1}} );
+      if (track) {
+        var playing = Tracks.findOne( {playing : true} );
+        if (playing) {
+          Tracks.update( playing._id, {
+            $set : {
+              old : true,
+              playing : false
+            }
+          });
+        }
+        Tracks.update( track._id, {
+          $set : {playing : true},
+          $inc : {playCount : 1}
+        });
+        this.response.writeHead( 200, headers );
+        this.response.write( JSON.stringify( track ) );
+        this.response.end();
+      }
+    }
+  });
+});
+
 if (Meteor.isServer) {
+  /*
+  Meteor.Router.add('/api/tracks', function() {
+    var statusCode = 200;
+    var headers = {
+      "Access-Control-Allow-Origin" : "*",
+      "Access-Control-Allow-Methods" : "GET",
+      "Access-Control-Allow-Headers" : "*",
+    };
+    var body = {"a" : 10};
+    return [statusCode, headers, body];
+  });
+  */
   Meteor.startup(function () {
-    // code to run on server at startup
   });
 }
 
