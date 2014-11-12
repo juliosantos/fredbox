@@ -1,6 +1,6 @@
 var Spotify = (function () {
   var search = function (query) {
-    var url = "http://ws.spotify.com/search/1/track.json?q=" + query;
+    var url = "https://api.spotify.com/v1/search?type=track&q=" + query;
     var results = $.ajax({
       url : url,
       method : "GET",
@@ -8,12 +8,12 @@ var Spotify = (function () {
       async : false
     });
 
-    return _.map( JSON.parse( results.responseText ).tracks, function (track) {
+    return _.map( JSON.parse( results.responseText ).tracks.items, function (track) {
       return {
-        href : track.href,
+        href : track.uri,
         name : track.name,
         artist : track.artists[0].name,
-        length : track.length,
+        length : track.duration_ms / 1000,
         toString : function() {
           return JSON.stringify(this);
         },

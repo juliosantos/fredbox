@@ -14,13 +14,13 @@
       },
       "Bootstrap3-Typeahead": {
         "git": "https://github.com/JustinSGray/meteor-Bootstrap-3-Typeahead.git",
-        "tag": "v0.1.1",
-        "commit": "770b69d73e559c9f6506daa0a034acab21169479"
+        "tag": "v3.0.3",
+        "commit": "1438ed827fc3ca16c9ae04062c1122002151c7d6"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
-        "tag": "v4.0.3",
-        "commit": "61e9361384347547ae144f8228faa4deffda23db"
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       }
     }
   }

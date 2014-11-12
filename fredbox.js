@@ -110,6 +110,7 @@ if (Meteor.isClient) {
   });
 }
 
+/*
 Router.map(function () {
   this.route( "tracks", {
     where : "server",
@@ -143,6 +144,7 @@ Router.map(function () {
     }
   });
 });
+*/
 
 if (Meteor.isServer) {
   /*
